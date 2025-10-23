@@ -52,18 +52,26 @@ docker build -t <nombre imagen>:<tag> .
  
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 No olvides verificar en qué directorio se encuentra el archivo Dockerfile
-```
+<img width="1048" height="293" alt="image" src="https://github.com/user-attachments/assets/dbb5ebfa-f4e8-4736-9640-c7c67e609716" />
 
-```
+<img width="758" height="391" alt="image" src="https://github.com/user-attachments/assets/c0430833-9134-4e5c-9ebb-a4c2a2f47140" />
 
 **¿Cuántos pasos se han ejecutado?**
 # RESPONDER 
+Se ejecutan 4 pasos.
 
 ### Inspeccionar la imagen creada
-# COMPLETAR CON UNA CAPTURA
+# COMPLETAR
+```
+docker inspect 
+```
 
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
+<img width="1060" height="487" alt="image" src="https://github.com/user-attachments/assets/34e86a9b-4bf0-455f-b5ac-3d2d058ff4d1" />
+
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+
+La segunda vez que construyes la imagen (después de modificar index.html), Docker usa la caché de los pasos que no cambiaron.
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -75,14 +83,20 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d -p 8080:80 --name contenedor-web miweb:1.0
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
 # COMPLETAR CON LA RESPUESTA
 
+El puerto host utilizado para el mapeo es el 8080.
+
 **¿Qué es una imagen huérfana?**
 # COMPLETAR CON LA RESPUESTA
+
+Una imagen huérfana (también llamada dangling image) es una imagen de Docker que no tiene nombre ni etiqueta asociada (<none>), y que ya no está vinculada a ningún contenedor ni versión activa.
+
+Estas imágenes se generan normalmente al reconstruir una imagen con el mismo nombre o etiqueta, ya que Docker conserva la versión anterior en estado “huérfano”.
 
 ### Identificar imágenes huérfanas
 ```
