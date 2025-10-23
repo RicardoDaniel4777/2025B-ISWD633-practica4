@@ -12,6 +12,16 @@ Asignar núcleos de CPU específicos:
 **¿Como saber el numero de procesadores virtuales que tiene una máquina?**
 ## COMPLETAR
 
+Para saber cuántos procesadores virtuales tiene el host se ejecuta el siguiente comando:
+```
+docker exec -it <nombre_contenedor> bash
+```
+
+Y una vez dentro del contendor:
+```
+nproc
+```
+
 ## Ejemplos
 _Puedes copiar y ejecutar directamente cada uno de los comandos_
 
